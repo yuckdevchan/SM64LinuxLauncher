@@ -1,5 +1,5 @@
 # SM64LinuxLauncher
-A launcher for super mario 64 pc port. works on linux apt/pacman based distros and Windows.
+A launcher for super mario 64 pc port. works on linux apt/pacman (not arch, sorry) based distros.
 ![screenshot](https://cdn.discordapp.com/attachments/886701656488697878/919333674229583923/Zrzut_ekranu_z_2021-12-11_22-02-23.png)
 
 ## Linux installation
