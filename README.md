@@ -10,7 +10,7 @@ A launcher for super mario 64 pc port. works on linux apt/pacman based distros a
 `chmod +x builder.py`    
 `./installdepends.sh`  
 ## Windows installation
-This repo is focused on Linux. yould be better off using SM64Buider2 or SM64NXBuilder, you can also use the original sm64pclauncher, but it's not recommended.
+This repo is focused on Linux. yould be better off using SM64Builder2 or SM64NXBuilder, you can also use the original sm64pclauncher, but it's not recommended.
 ## Usage
 ### Running on Linux
 type in terminal `python3 launcher.py` (you must be in launcher directory)  
@@ -35,5 +35,3 @@ if you want a shortcut to the laucher, on ubuntu, you can do this by making a fi
 `Exec=bash -c "cd path/into/sm64pclauncher ; ./launcher.py"`  
 `Icon=/whatever/icon/you/like`  
 `Categories=Game;`  
-(it may not work on other distros, but it is worth trying!)  
-on windows right click the file launcher.py and select create shortcut and move it to desktop, and change the icon it you want
