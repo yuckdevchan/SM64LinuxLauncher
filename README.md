@@ -1,4 +1,4 @@
-# sm64pclauncher
+# SM64LinuxLauncher
 A launcher for super mario 64 pc port. works on linux apt/pacman based distros and Windows.
 ![screenshot](https://cdn.discordapp.com/attachments/886701656488697878/919333674229583923/Zrzut_ekranu_z_2021-12-11_22-02-23.png)
 ## Linux installation
@@ -10,10 +10,8 @@ A launcher for super mario 64 pc port. works on linux apt/pacman based distros a
 `chmod +x builder.py`    
 `./installdepends.sh`  
 ## Windows installation
-install [python 3](https://www.python.org/downloads/) and [msys2](https://www.msys2.org/), then download the latest release and unpack it, then doubleclick on `installdepends.bat`.
+This repo is focused on Linux. yould be better off using SM64Buider2 or SM64NXBuilder, you can also use the original sm64pclauncher, but it's not recommended.
 ## Usage
-### Running on Windows
-doubleclick  on `launcher.py`
 ### Running on Linux
 type in terminal `python3 launcher.py` (you must be in launcher directory)  
 or  
@@ -22,7 +20,6 @@ doubleclick  on `launcher.py` (this way may not work)
 To build sm64, press "Build"  
 To play, select existing build and click "Play"  
 ## How to build
-If you are on windows, you should see a window prompting to select the msys2 folder. Basicallly you need to select the folder where you installed msys2. If you are building for the first time or reinstalled msys2, check install msys2 dependencies.  
 In the first input box, paste github repository of any sm64pc, and in the box next to the first one type the branch.  
 In the second box, type any name you want for your repo folder. it will display like that in the launcher build selection.  
 In the other two boxes you can specify modelpack and texture pack folder. Note: when you browse for the folder, you have to be in this folder to select it.  
