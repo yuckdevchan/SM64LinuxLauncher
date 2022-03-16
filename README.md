@@ -28,7 +28,7 @@ To play, select existing build and click "Play"
 
 ## How to build
 
-In the first input box, paste github repository of any sm64pc, and in the box next to the first one type the branch.  
+In the drop down menu, select a repo. and in the box next to it type the branch.  
 
 In the second box, type any name you want for your repo folder. it will display like that in the launcher build selection.  
 
