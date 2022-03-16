@@ -13,7 +13,8 @@ buildfailed = [
 ]
 branchselect = [
     [sg.Text("Paste the git link to a sm64pc repo and branch", text_color=textColor, background_color=windowBackgroundColor)],
-    [sg.In(background_color=boxColor, text_color=boxTextColor),sg.In(size=(7, 1), background_color=boxColor, text_color=boxTextColor)],
+    [sg.Combo(['sm64ex','Render96ex',], background_color=boxColor,text_color=boxTextColor),
+    sg.In(size=(7, 1), background_color=boxColor, text_color=boxTextColor)],
     [sg.Text("And type the name of repo folder", text_color=textColor, background_color=windowBackgroundColor)],
     [sg.In(background_color=boxColor, text_color=boxTextColor)],
     [sg.Text('modelpack folder (optional)', text_color=textColor, background_color=windowBackgroundColor)],
@@ -88,7 +89,7 @@ if os.name == 'nt' and msys2depends == True:
     run('pacman -S mingw-w64-x86_64-SDL2 --noconfirm')
 
 # Create the window
-window = sg.Window("SM64 pc builder", branchselect)
+window = sg.Window("SM64 Linux Builder", branchselect)
 
 
 # Create an event loop
@@ -103,7 +104,16 @@ while True:
         texturepack=values[4]
         modelpackfolder=values[3]
         window.close()
+
+
+        if repolink == 'sm64ex':
+            repolink = 'https://github.com/sm64pc/sm64ex'
+        elif repolink == 'Render96ex':
+            repolink = 'https://github.com/Render96/Render96ex/'
+
         window = sg.Window('Downloading', downloading)
+        
+        
         while True:
             event, values = window.read(1)
             if os.name == 'posix':
@@ -118,7 +128,7 @@ while True:
         
 
 
-        window = sg.Window("baserom", baseromselect)
+        window = sg.Window("Select Baserom", baseromselect)
         
         while True:
             event, values = window.read()
