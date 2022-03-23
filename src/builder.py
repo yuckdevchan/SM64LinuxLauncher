@@ -127,7 +127,7 @@ while True:
 
                 os.system('rm -rf patches')
                 os.system('git clone https://github.com/PeachyPeachSM64/sm64pc-omm patches/OMM')
-                ommpath = "~/patches/omm"
+                ommpath = "~/Sm64LinuxLauncher/patches/omm"
 
                 os.system('cp -r "'+modelpackfolder+'/actors" "'+repofolder+'" && cp -r "'+modelpackfolder+'/src" "'+repofolder+'"')
             if os.name == 'nt':
