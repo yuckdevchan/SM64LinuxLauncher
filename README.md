@@ -4,12 +4,7 @@ A launcher for super mario 64 pc port. works on linux apt/pacman based distros.
 
 ## Linux installation
 1.download latest release and unpack it  
-2.run these commands in terminal:  
-`cd /directory/to/your/downloaded/launcher` (replace "/directory/to/your/downloaded/launcher" with your directory to the launcher)  
-`chmod +x installdepends.sh`  
-`chmod +x launcher.py`    
-`chmod +x builder.py`    
-`./installdepends.sh`  
+2.Double-click setup and click "run in terminal"
 
 ## Windows installation
 This repo is focused on Linux. yould be better off using SM64Builder2 or SM64NXBuilder, you can also use the original sm64pclauncher, but it's not recommended.
