@@ -13,9 +13,8 @@ buildfailed = [
     [sg.Text('Build failed, try to build again', text_color=textColor, background_color=windowBackgroundColor), sg.Button('Ok', button_color=('white', bottomButtonColor))]
 ]
 branchselect = [
-    [sg.Text("Paste the git link to a sm64pc repo and branch", text_color=textColor, background_color=windowBackgroundColor)],
-    [sg.Combo(['sm64ex','Render96ex',], background_color=boxColor,text_color=boxTextColor),
-    sg.In(size=(7, 1), background_color=boxColor, text_color=boxTextColor)],
+    [sg.Text("Select a Repository. (If you do not select a valid repo, the builder will automaticaly default to sm64ex-nightly).", text_color=textColor, background_color=windowBackgroundColor)],
+    [sg.Combo(['sm64ex-nightly','sm64ex-master','','Render96ex-master','Render96ex-tester','','Saturn','Saturn: Moon Edition',], background_color=boxColor,text_color=boxTextColor),],
     [sg.Text("And type the name of repo folder", text_color=textColor, background_color=windowBackgroundColor)],
     [sg.In(background_color=boxColor, text_color=boxTextColor)],
     [sg.Text('modelpack folder (optional)', text_color=textColor, background_color=windowBackgroundColor)],
@@ -27,7 +26,9 @@ branchselect = [
 buildoptions = [
     [sg.Text('specify build flags and jobs, you can see possible flags on your repo\'s wiki, if you use modelpack, use MODELPACK=1, if you use texturepack, use EXTERNAL_DATA=1',text_color=textColor, background_color=windowBackgroundColor)],
     [sg.In(text_color=boxTextColor, background_color=boxColor),sg.Button('Build', button_color=("white",otherButtonColor))],
-    [sg.Text('Install Odyssey Marios Moveset? (Note: Do not install this with the Extended Moveset.)',text_color=textColor, background_color=windowBackgroundColor)],    
+    [sg.Text('Install DynOS (Dynamic Options System)? (Note: Currently the patch will not work for some reason. you can still try to use it tho).',text_color=textColor, background_color=windowBackgroundColor)],
+    [sg.Combo(['Yes','No',], background_color=boxColor,text_color=boxTextColor)],
+    [sg.Text('Install Odyssey Marios Moveset? (Note: Do not install this with the Extended Moveset).',text_color=textColor, background_color=windowBackgroundColor)],    
     [sg.Combo(['Yes','No',], background_color=boxColor,text_color=boxTextColor)],
     #[sg.Text('Install Extended Moveset? (Note: Do not install this with the Odyssey Marios Moveset.)',text_color=textColor, background_color=windowBackgroundColor)],    
     #[sg.Combo(['Yes','No',], background_color=boxColor,text_color=boxTextColor)],
@@ -105,17 +106,41 @@ while True:
         exit()
     if event == "Ok":
         repolink=values[0]
-        branchname=values[1]
-        repofolder=values[2]
-        texturepack=values[4]
-        modelpackfolder=values[3]
+        branchname=values[0]
+        repofolder=values[1]
+        texturepack=values[3]
+        modelpackfolder=values[2]
         window.close()
 
 
-        if repolink == 'sm64ex':
+        if repolink == 'sm64ex-nightly':
             repolink = 'https://github.com/sm64pc/sm64ex'
-        elif repolink == 'Render96ex':
+            branchname = 'nightly'
+
+        elif repolink == 'sm64ex-master':
+            repolink = 'https://github.com/sm64pc/sm64ex'
+            branchname = 'master'
+
+        elif repolink == 'Render96ex-master':
             repolink = 'https://github.com/Render96/Render96ex/'
+            branchname = 'master'
+
+        elif repolink == 'Render96ex-tester':
+            repolink = 'https://github.com/Render96/Render96ex'
+            branchname = "tester"
+
+        elif repolink == 'Saturn':
+            repolink = 'https://github.com/Llennpie/Saturn'
+            branchname = 'legacy'
+
+        elif repolink == 'Saturn: Moon Edition':
+            repolink = 'https://github.com/Llennpie/Saturn'
+            branchname = 'moon'
+
+        else:
+            repolink = 'https://github.com/sm64pc/sm64ex'
+            branchname = 'nightly'
+
 
         window = sg.Window('Downloading', downloading)
         
@@ -126,8 +151,14 @@ while True:
                 os.system('git clone "'+repolink+'" "'+repofolder+'" --branch='+branchname)
 
                 os.system('rm -rf patches')
+
+                os.system('cd ~/SM64LinuxLauncher')
+                os.system('wget -O dynos.zip https://sm64pc.info/forum/download/file.php?id=293 && unzip dynos.zip -d ./patches')
+                dynospath = '~/SM64LinuxLauncher/patches/DynOS.1.0.patch'
+                os.system('rm dynos.zip')
+
                 os.system('git clone https://github.com/PeachyPeachSM64/sm64pc-omm patches/OMM')
-                ommpath = "~/Sm64LinuxLauncher/patches/omm"
+                ommpath = "~/Sm64LinuxLauncher/patches/omm/patch/omm.patch"
 
                 os.system('cp -r "'+modelpackfolder+'/actors" "'+repofolder+'" && cp -r "'+modelpackfolder+'/src" "'+repofolder+'"')
             if os.name == 'nt':
@@ -154,8 +185,9 @@ while True:
                     if event == 'Build':
 
                         buildflags = values[0]
-                        installomm = values[1]
-                        installem = values[2]
+                        installdynos = values[1]
+                        installomm = values[2]
+                        #installem = values[3]
 
                         window.close()
                         window = sg.Window('Building', building)
@@ -164,14 +196,12 @@ while True:
                             if os.name == 'posix':
                                 os.system('cp "'+baseromfolder+'" "'+repofolder+'/baserom.'+romregion+'.z64"')
 
+                                if installdynos == '' or 'yes':
+                                    os.system('cd "'+repofolder+'" && git apply --ignore-whitespace '+dynospath+'')
+
                                 if installomm == "Yes":
                                         os.system('cd "'+repofolder+'" && git apply '+ommpath+'')
                                         print("Installing OMM")
-
-                                else:
-                                    print("No Mods To be Installed")
-                                    
-
 
                                 os.system('cd "'+repofolder+'" && make '+buildflags+' VERSION='+romregion)
                                 os.system('cp -r "'+texturepack+'/gfx" "'+repofolder+'/build/'+romregion+'_pc/res"')
