@@ -12,4 +12,4 @@ else
 fi
 
 pip3 install pysimplegui
-cp -R src ~/SM64LinuxLauncher
+sudo cp -R src ~/SM64LinuxLauncher
