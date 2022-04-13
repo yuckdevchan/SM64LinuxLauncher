@@ -196,12 +196,20 @@ while True:
                             if os.name == 'posix':
                                 os.system('cp "'+baseromfolder+'" "'+repofolder+'/baserom.'+romregion+'.z64"')
 
-                                if installdynos == '' or 'yes':
+                                if installdynos == 'yes':
                                     os.system('cd "'+repofolder+'" && git apply --ignore-whitespace '+dynospath+'')
+
+                                else:
+                                    print("no DynOS")
+                                
 
                                 if installomm == "Yes":
                                         os.system('cd "'+repofolder+'" && git apply '+ommpath+'')
                                         print("Installing OMM")
+
+                                else:
+                                    print("no OMM")
+                                    
 
                                 os.system('cd "'+repofolder+'" && make '+buildflags+' VERSION='+romregion)
                                 os.system('cp -r "'+texturepack+'/gfx" "'+repofolder+'/build/'+romregion+'_pc/res"')
