@@ -149,6 +149,10 @@ while True:
             repolink = 'https://github.com/AloXado320/sm64ex-alo'
             branchname = 'master'
 
+        elif repolink == 'sm64ex-coop':
+            repolink = 'https://github.com/djoslin0/sm64ex-coop'
+            branchname = 'master'
+
         else:
             repolink = 'https://github.com/sm64pc/sm64ex'
             branchname = 'nightly'
