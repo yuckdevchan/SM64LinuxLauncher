@@ -13,4 +13,6 @@ fi
 
 pip3 install pysimplegui
 pip3 install tk
+pip install pysimplegui
+pip install tk
 sudo cp -R src ~/SM64LinuxLauncher
