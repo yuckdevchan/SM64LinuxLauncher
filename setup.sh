@@ -5,9 +5,9 @@ until [[ ${ANSWER,,} == "pacman" ]] || [[ ${ANSWER,,} == "apt" ]]; do
 done
 
 if [[ ${ANSWER,,} == "pacman" ]]; then
-	sudo pacman -S python3 python-pip tk sdl2_gfx sdl2_image sdl2_mixer sdl2_net git
+	sudo pacman -S python3 python3-pip python python-pip python3-tk tk sdl2_gfx sdl2_image sdl2_mixer sdl2_net git
 else
-	sudo apt-get install -y python3 python3-pip python3-tk libsdl2-dev git gcc-mips-linux-gnu
+	sudo apt-get install -y python3 python3-pip python python-pip python3-tk tk libsdl2-dev git gcc-mips-linux-gnu
 	pip3 install pysimplegui
 fi
 
