@@ -1,6 +1,1 @@
-asdf:us
-test:us
-alo:us
-deez:us
-rats:us
 
