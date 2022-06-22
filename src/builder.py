@@ -151,7 +151,7 @@ while True:
 
         elif repolink == 'sm64ex-coop':
             repolink = 'https://github.com/djoslin0/sm64ex-coop'
-            branchname = 'master'
+            branchname = 'coop'
 
         else:
             repolink = 'https://github.com/sm64pc/sm64ex'
